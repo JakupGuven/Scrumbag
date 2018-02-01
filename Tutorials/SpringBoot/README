@@ -1,0 +1,5 @@
+Om du inte är bekant med verktyget Gradle som används för att "ladda in" kodbibliotek som inte ingår i Java Standard Library (t.ex. Spring) gör först 0:"Building Java Projects with Gradle" alternativt någon annan tutorial på hur man använder Gradle.
+
+När du är klar eller redan vet hur man använder Gradle så gör först 1:"Building an Application with Spring Boot" och sedan 2:"Building a RESTful Web Service ".
+
+Skulle du stöta på problem så frukta ej, ta en paus eller en promenad och försök igen. Om det fortfarande inte funkar så kolla i "Spring Boot Reference Guide" eller hör med Jakup.
