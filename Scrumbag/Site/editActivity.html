@@ -1,0 +1,54 @@
+<!doctype html>
+
+<html>
+<head>
+<meta charset="utf-8">
+
+<title>Edit activity</title>
+
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="activity">
+  <div>
+  <h1>Edit Activity</h1>
+  <form>
+  Task name
+  <br>
+  <input type="text" name="taskName">
+  <br>
+  Responsible
+  <br>
+  <input type="text" name="taskResponsible">
+  <br>
+  Estimated time
+  <br>
+  <input type="number" name="taskEstiTime">
+  <br>
+  Priority:
+  <br>
+  <select name="Priority">
+  <option value="Empty">Pick priority</option>
+  <option value="High">High</option>
+  <option value="Medium">Medium</option>
+  <option value="Low">Low</option>
+</select>
+  <br>
+  Status:
+  <br>
+  <select name="Status">
+  <option value="Empty">Pick status</option>
+  <option value="started">Started</option>
+  <option value="notStarted">Not started</option>
+  <option value="forTest">For Test</option>
+  <option value="unplanned">Unplanned</option>
+  <option value="impediments">Impediments</option>
+</select>
+<br>
+<br>
+<input type="submit" name="newActivity">
+  </form>
+  </div>
+
+  <script src="js/scripts.js"></script>
+</body>
+</html>
