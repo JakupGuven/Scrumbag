@@ -11,11 +11,15 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class TestCases {
-	private int status; //Each status have a different int
+	private int status, time; //Each status have a different int
+	private boolean access;
 	private Task t;
-	private User user, userExp;
+	private Project project;
+	private User user, userTest;
+	private Group group; //Should be a group object or an arrayList of users? 
 	private ServiceController c;
 	private ArrayList arrayTask;
+	private ArrayList arrayUser;
 	private String password, username;
 
 	@BeforeClass
@@ -29,12 +33,17 @@ public class TestCases {
 	@Before
 	public void setUp() throws Exception {
 		arrayTask = new ArrayList();
-		userExp = new User();
-		t = new Task();
+		arrayUser = new ArrayList();
+		project = new Project();
+		userTest = new User();
 		c = new Controller();
+		group = new Group();
+		t = new Task();
 		status = 1;
 		password = "123456";
 		username = "mittAnvändarNamn";
+		access = true;
+
 	}
 
 	@After
@@ -73,13 +82,13 @@ public class TestCases {
 	@Test
 	public void tc5() {
 		user = c.login(username, password);
-		assertSame(user, userExp);
+		assertSame(user, userTest);
 	}
 	
 	//6. Test case = logout
 	@Test
 	public void tc6() {
-		assertEquals(c.logout(userExp), true);	
+		assertEquals(c.logout(userTest), true);	
 	}
 	
 	//7. Test case = set Task Time Expected 
@@ -93,6 +102,50 @@ public class TestCases {
 //		assertEquals(c.delagateTask(t, userExp), true);
 //	}
 
+//	9. Test case = set task time spent
+//  This operation should not be merged with another operation since the time spent on a task will
+//	always increase for each time someone makes progress on that task
+	@Test
+	public void tc9(){
+		assertEquals(c.setTaskTime(time, userTest), true); 
+	}
+	
+	
+//	10. Test case = Admin create new user account
+	@Test
+	public void tc10(){
+		assertEquals(c.newUser(access, arrayUser), true);
+//		Alternativt
+//		assertEquals(c.newUser(userAdmin, arrayUser), true); 
+	}
+	
+//	11. Test case = Admin add users to project
+	@Test
+	public void tc11(){
+		assertEquals(c.addToProject(access, userTest, project), true);
+//		Alternativt
+//		assertEquals(c.newUser(userAdmin, userTest, project), true); 
+	}
+
+//	12. Test case = Admin delete users from a project
+	@Test
+	public void tc12(){
+		assertEquals(c.deletUserFromProject(access, userTest, project), true);
+	}
+	
+//	13. Test case = Admin add group to a project
+	@Test
+	public void tc13(){
+		assertEquals(c.addGroupToProject(access, group, project), true);
+	}
+	
+//	14. Test case = Admin delete group from a project
+
+	public void tc14(){
+		
+	}
+	
+	
 	
 
 }
