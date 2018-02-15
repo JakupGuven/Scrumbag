@@ -8,28 +8,28 @@
 
 <link rel="stylesheet" href="style.css">
 </head>
-<body class="activity">
+<body class="activity" >
   <div>
   <h1>Edit Activity</h1>
-  <form>
+  <form action="userMenu.html">
   Task name
   <br>
-  <input type="text" name="taskName">
+  <input type="text" name="taskName" value="Test activity">
   <br>
   Responsible
   <br>
-  <input type="text" name="taskResponsible">
+  <input type="text" name="taskResponsible" value="Carl Test">
   <br>
   Estimated time
   <br>
-  <input type="number" name="taskEstiTime">
+  <input type="number" name="taskEstiTime" value="15">
   <br>
   Priority:
   <br>
   <select name="Priority">
   <option value="Empty">Pick priority</option>
   <option value="High">High</option>
-  <option value="Medium">Medium</option>
+  <option value="Medium" selected>Medium</option>
   <option value="Low">Low</option>
 </select>
   <br>
@@ -39,7 +39,7 @@
   <option value="Empty">Pick status</option>
   <option value="started">Started</option>
   <option value="notStarted">Not started</option>
-  <option value="forTest">For Test</option>
+  <option value="forTest" selected>For Test</option>
   <option value="unplanned">Unplanned</option>
   <option value="impediments">Impediments</option>
 </select>
