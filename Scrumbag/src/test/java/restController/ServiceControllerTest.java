@@ -10,16 +10,21 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import projectHandlerService.Task;
+
+
 public class ServiceControllerTest {
-	private int status, time; // Each status have a different int
+	private int time; // Each status have a different int
 	private boolean access;
 	private Task t;
 	private Backlog bl;
+	private Sprint s;
 	private Project project;
 	private User user, userTest;
 	private Group group; // Should be a group object or an arrayList of users?
 	private ServiceController c;
-	private ArrayList arrayTask;
+	private String name, RespondibleUser, taskDiscription;
+	private int expectedTime, status, priority;
 	private ArrayList arrayUser;
 	private String password, username;
 
@@ -35,6 +40,7 @@ public class ServiceControllerTest {
 	public void setUp() throws Exception {
 		arrayTask = new ArrayList();
 		arrayUser = new ArrayList();
+		s = new Sprint();
 		project = new Project();
 		bl = new BackLog();
 		userTest = new User();
@@ -55,7 +61,7 @@ public class ServiceControllerTest {
 	// Test case = create task
 	@Test
 	public void tc1() {
-		assertEquals(c.createTask(arrayTask), true);
+		assertEquals(c.createTask(name, responsiblePerson, taskDiscription, expectedTime, status, priority), true);
 		// fail("Not yet implemented");
 	}
 
@@ -147,57 +153,82 @@ public class ServiceControllerTest {
 		assertEquals(c.deletGroupFromProject(access, group, project), true);
 	}
 
-	// 15. Test case = return user time spent
+	// 15. Test case = user can see registered tasks in a datastructure
+	// 16. Test case = return responsible person for task
+	// 17. Test case = return expected time for activities
+	// 18. Test case = return activities time half day
+	
 	@Test
 	public void tc15() {
-		int time = c.getTimSpentUser(userTest, t);
-		//???
+		ArrayList<Task> tTemp = new ArrayList();
+		ArrayList<Task> tList = new ArrayList();
+		Task t1 = new Task();
+		Task t2 = new Task();
+		Task t3 = new Task();
+		project.add(t1);
+		project.add(t2);
+		project.add(t3);
+		tTemp.add(t1);
+		tTemp.add(t2);
+		tTemp.add(t3);
 
+		tList = c.getTaskInProjects(userTest);
+
+		assertEquals(tList, tTemp);
 	}
 
 	// 16. Test case = return responsible person for task
 
-	@Test
-	public void tc16() {
-		Object o = c.getTaskResponsibel(t);
-		assertEquals(o, o instanceof Task);
-	}
+//	@Test
+//	public void tc16() {
+//		Object o = c.getTaskResponsibel(t);
+//		assertEquals(o, o instanceof Task);
+//	}
 
 	// 17. Test case = return expected time for activities
-	@Test
-	public void tc17() {
-		Object tempTime;
-		assertEquals(tempTime = c.getTimeTask(t), tempTime instanceof Integer);
-
-	}
+//	@Test
+//	public void tc17() {
+//		Object tempTime;
+//		assertEquals(tempTime = c.getTimeTask(t), tempTime instanceof Integer);
+//
+//	}
 
 	// 18. Test case = return activities time half day
-	@Test
-	public void tc18() {
-		// ?????
-	
-	}
+//	@Test
+//	public void tc18() {
+//		int temp;
+//
+//	}
 
 	// 19. Test case = Display to “Task Board
-	//???
+	// ???
 	@Test
 	public void tc19() {
-		assertEquals(c.showTaskBoard(t, tb), true);
+		ArrayList<Task> tList = new ArrayList();
+		ArrayList<Task> tTemp = new ArrayList();
+		Task t1 = new Task();
+		Task t2 = new Task();
+		tTemp.add(t1);
+		tTemp.add(t2);
+		s.addTask(t1);
+		s.addTask(t2);
+		tList = c.getTaskFromSprint(s);
+		assertEquals(tList, tTemp);
 	}
 
 	// 20. Test case = Display activities status on “Task Board”
-	//???
-	@Test
-	public void tc20() {
-		assertEquals(c.showTaskStatus(t, status, tb), true);
-	}
+	// ???
+//	@Test
+//	public void tc20() {
+//		assertEquals(c.showTaskStatus(t, status, tb), true);
+//	}
 
 	// 21. Test case = set activity status
 	@Test
 	public void tc21() {
 		assertEquals(c.setStatus(t, status), true);
 	}
-
+	// 20. Test case = Display activities status on “Task Board”
 	// 22. Test case = control not started status
 	// 23. Test case = control started status
 	// 24. Test case = control for test status
@@ -218,7 +249,7 @@ public class ServiceControllerTest {
 	}
 
 	// 29. Test case = set backlog activity status
-	// Redan löst? 
+	// Redan löst?
 	@Test
 	public void tc29() {
 		assertEquals(c.setTaskStatusBl(t, status), true);
