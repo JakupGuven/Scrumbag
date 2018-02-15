@@ -1,0 +1,50 @@
+<!doctype html>
+
+<html>
+<head>
+<meta charset="utf-8">
+
+<title>Remove Project</title>
+
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="activity" >
+  <div>
+  <ul>
+    <div id="myDIV1">
+      <button onclick="myFunction1()">Project 1</button>
+    </div>
+  </ul>
+  <ul>
+    <div id="myDIV2">
+      <button onclick="myFunction2()">Project 2</button>
+    </div>
+  </ul>
+  <ul>
+    <div id="myDIV3">
+      <button onclick="myFunction3()">Project 3</button>
+    </div>
+  </ul>
+
+  </div>
+
+  <a href="login.html" class="logout">logout</a>
+</body>
+</html>
+<script type="text/javascript">
+function myFunction1() {
+  console.log("test");
+  var x = document.getElementById("myDIV1");
+  x.style.display = "none";
+}
+function myFunction2() {
+  console.log("test");
+  var x = document.getElementById("myDIV2");
+  x.style.display = "none";
+}
+function myFunction3() {
+  console.log("test");
+  var x = document.getElementById("myDIV3");
+  x.style.display = "none";
+}
+</script>
