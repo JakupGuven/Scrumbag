@@ -18,6 +18,11 @@
     color: white;
     padding: 10px;
 }
+.logout{
+ position:fixed;
+ right:10px;
+ top:5px;
+}
 .activity {
     position: absolute;
     left: 0;
