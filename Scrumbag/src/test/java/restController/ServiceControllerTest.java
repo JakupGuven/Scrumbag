@@ -1,4 +1,3 @@
-
 package restController;
 
 import static org.junit.Assert.*;
@@ -141,12 +140,105 @@ public class ServiceControllerTest {
 	}
 	
 //	14. Test case = Admin delete group from a project
-
+	@Test
 	public void tc14(){
+		assertEquals(c.deletGroupFromProject(access, group, project), true);
+	}
+	
+//	15. Test case = return user time spent
+	@Test
+	public void tc15(){
+		//????? 
+	}
+	
+//	16. Test case = return responsible person for task
+	
+	@Test
+	public void tc16(){
+		Object o = c.getTaskResponsibel(t);
+		assertEquals(o, o instanceof Task);
+	}
+	
+//	17. Test case = return expected time for activities 
+	@Test
+	public void tc17(){
+		Object tempTime;
+		assertEquals(tempTime = c.getTimeTask(t), tempTime instanceof Integer);
 		
 	}
 	
+//	18. Test case = return activities time half day
+	@Test
+	public void tc18(){
+		//?????
+	}
 	
 	
+//	19. Test case = Display to “Task Board”
+	@Test
+	public void tc19(){
+		
+	}
+	
+//	20. Test case = Display activities status on “Task Board”
+	@Test
+	public void tc20(){
+		
+	}
+	
+	//19. Test case = Display to “Task Board”
+		 @Test	
+		public void tc19() {
+			assertEquals(c.showTaskBoard(t, tb), true); 
+		}
+		
+		//20. Test case = Display activities status on “Task Board”
+		 @Test
+		public void tc20() {
+			assertEquals(c.showTaskStatus(t, status, tb), true); 
+		}
+		
+		//21. Test case = set activity status
+		 @Test
+		public void tc21() {
+			assertEquals(c.setStatus(t, status), true);
+		}
+		
+		//22. Test case = control not started status
+		//23. Test case = control started status
+	    //24. Test case = control for test status
+	    //25. Test case = control done status
+		//26. Test case = control unplanned status 
+		//27. Test case = control “hinder som finns” status
+		 @Test
+		public void tc22() {
+			assertEquals(c.TaskStatus(t, status), status);
+		}
+		
+		//28. Test case = add activity to backlog
+		 @Test
+		public void tc28() {
+			assertEquals(c.addTaskBl(arrayTask), true);
+		}
+		
+		//29. Test case = set backlog activity status
+		 @Test
+		public void tc29() {
+			assertEquals(c.setTaskStatusBl(t, status), true);
+		}
+		
+		//30. Test case = set priority
+		 @Test
+		public void tc30() {
+			assertEquals(c.setPriorityTask(t, priority), priority); 
+		}
+		
+		//31. Test case = set project priority
+		 @Test
+		public void tc31() {
+			assertEquals(c.setPriorityProject(project, priority), priority);
+			
+			
+		}
 
 }
