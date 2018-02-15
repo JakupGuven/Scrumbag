@@ -10,46 +10,49 @@ import org.springframework.web.bind.annotation.RestController;
 
 import projectHandlerService.Project;
 import projectHandlerService.Task;
-
+import projectHandlerService.Task.taskStatus;
 
 @RestController
 public class ServiceController {
-	
-	
+
 	/**
-	 * Exempelmetod
-	 * När en HTTP GET request görs till localhost:8080/hello-world/officiellt Spring Boot certifierad
-	 * kommer "Hello World officiellt Spring Boot certifierad" returneras
+	 * Exempelmetod När en HTTP GET request görs till
+	 * localhost:8080/hello-world/officiellt Spring Boot certifierad kommer
+	 * "Hello World officiellt Spring Boot certifierad" returneras
 	 */
 	@RequestMapping(value = "/hello-world/{parameter}", method = RequestMethod.GET)
 	public String helloWorld(@PathVariable("parameter") String parameter) {
 		return new String("Hello World\n " + parameter);
 	}
 
-	public Object createTask(int expectedTime, String name, Object currentStatus, Object taskprio, Object actuallTime,
-			Object responsiblePerson) {
-		// TODO Auto-generated method stub
-		return null;
+	@RequestMapping(value = "/create-task/{expectedTime}?{name}?{currentStatus}?{taskprio}/{responsiblePerson}", method = RequestMethod.GET)
+	public Object createTask(@PathVariable("expectedTime") int expectedTime, @PathVariable("name") String name,
+			@PathVariable("currentStatus") Object currentStatus, @PathVariable("taskprio") Object taskprio,
+			@PathVariable("responsiblePerson") Object responsiblePerson) {
+		Task t = new Task(expectedTime, name, currentStatus, taskprio, responsiblePerson);
+		if (t != null)return new String("The task have been successfully made");
+
+		return new String("The task could not be made");
 	}
 
-	public Object changeStatus(Task t, int status) {
+	@RequestMapping(value = "/change-status/{taskID}?{status}", method = RequestMethod.GET)
+	public Object changeStatus(@PathVariable("task") Task task,@PathVariable("status") taskStatus status) {
+		task.setCurrentStatus(status);
+		return new String("The status have been change");
+	}
+	
+	@RequestMapping(value = "/delete-Task/{taskID}", method = RequestMethod.GET)
+	public Object deleteTask(@PathVariable("task")Task t) {
+		t = null;
 		// TODO Auto-generated method stub
-		return null;
+		return "Successfully deleted";
 	}
 
-	public Object deleteTask(Task t) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public Object setAll(int expectedTime, String name, Object currentStatus, Object taskprio, Object responsiblePerson,
-			Object actuallTime) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public Object createTask(int expectedTime, String name, Object currentStatus, Object taskprio,
-			Object responsiblePerson) {
+	@RequestMapping(value = "/edit-activity/taskId/{expectedTime}?{name}?{currentStatus}?{taskprio}?{responsiblePerson}", method = RequestMethod.GET)
+	public Object setAll(@PathVariable("task") Task task, @PathVariable("expectedTime")int expectedTime,@PathVariable("name") String name,@PathVariable("currentStatus") Object currentStatus,
+			@PathVariable("taskprio") Object taskprio,@PathVariable("responsiblePerson") Object responsiblePerson,
+			@PathVariable("actuallTime")Object actuallTime) {
+			task.setAll(expectedTime, name, currentStatus, taskprio, responsiblePerson, actuallTime);
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -63,7 +66,6 @@ public class ServiceController {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
 
 	public Object newUser(boolean access, ArrayList arrayUser) {
 		// TODO Auto-generated method stub
@@ -92,7 +94,7 @@ public class ServiceController {
 
 	public void setPriorityTask(Task t, int temp1) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	public Object getPriorityTask(Task t) {
@@ -102,7 +104,7 @@ public class ServiceController {
 
 	public void setPriorityProject(Project project, int temp) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	public Object getProjectPriority() {
@@ -112,17 +114,17 @@ public class ServiceController {
 
 	public void setTaskTime(int time, User user) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	public void addToProject(boolean access, User user, Project project) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	public void deletUserFromProject(boolean access, User user, Project project) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	public void addTaskToBacklog(boolean access, Group group Project project) {
@@ -132,5 +134,6 @@ public class ServiceController {
 
 	public void deletGroupFromProject(boolean access, Group group, Project project) {
 		// TODO Auto-generated method stub
-		
-	}}
+
+	}
+}
