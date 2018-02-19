@@ -53,7 +53,7 @@ public class ServiceControllerTest {
 		t = new Task();
 		status = 1;
 		password = "123456";
-		username = "mittAnvändarNamn";
+		username = "mittAnvÃ¤ndarNamn";
 		access = true;
 
 	}
@@ -105,8 +105,10 @@ public class ServiceControllerTest {
 	// 7. Test case = set Task Time Expected
 	@Test
 	public void tc7() {
+		Task t = new Task();
 		int temp = 10;
-		assertEquals(c.setActuallTime(10), true);
+		c.setActuallTime(temp, t);
+		assertEquals(c.getActuallTime(t), temp);
 	}
 
 	// 8. Test case = set responsible task
@@ -124,18 +126,23 @@ public class ServiceControllerTest {
 	// }
 
 	// 9. Test case = set task time spent
+	//En användare skall kunna ange hur mycket 
+	//tid som har spenderats på en specifik aktivitet. 
 	// This operation should not be merged with another operation since the time
 	// spent on a task will
 	// always increase for each time someone makes progress on that task
 	@Test
 	public void tc9() {
-		assertEquals(c.setTaskTime(time, userTest), true); 
+		Task t = new Task();
+		USer u = new User("Kalle", false);
+		c.setTaskTimeUser(time, u, t);
+		assertEquals(c.getTaskTimeUser(u, t), true); 
 	}
 
 	// 10. Test case = Admin create new user account
 	@Test
 	public void tc10() {
-		assertEquals(c.newUser(access, arrayUser), true);
+		assertEquals(c.newUser(userAdmin, name, adminOrNot), true);
 		// Alternativt
 		// assertEquals(c.newUser(userAdmin, arrayUser), true);
 	}
@@ -143,7 +150,9 @@ public class ServiceControllerTest {
 	// 11. Test case = Admin add users to project
 	@Test
 	public void tc11() {
-		assertEquals(c.addToProject(access, userTest, project), true); 
+		User uAdmin = new User ("Anna" ,true);
+		User userToPut = new User ("kalle" , false);
+		assertEquals(c.addToProject(uAdmin, userToPut, project), true); 
 		// Alternativt
 		// assertEquals(c.newUser(userAdmin, userTest, project), true);
 	}
@@ -151,7 +160,9 @@ public class ServiceControllerTest {
 	// 12. Test case = Admin delete users from a project
 	@Test
 	public void tc12() {
-		assertEquals(c.deletUserFromProject(access, userTest, project), true); 
+		User admin = new User("Anna", true);
+		User userToPut = new User("kalle" ,false);
+		assertEquals(c.deletUserFromProject(admin, userToPut, project), true); 
 	}
 
 	// 13. Test case = Admin add group to a project
@@ -213,7 +224,7 @@ public class ServiceControllerTest {
 	//
 	// }
 
-	// 19. Test case = Display to “Task Board
+	// 19. Test case = Display to â€œTask Board
 	// ???
 	@Test
 	public void tc19() {
@@ -229,7 +240,7 @@ public class ServiceControllerTest {
 		assertEquals(tList, tTemp);
 	}
 
-	// 20. Test case = Display activities status on “Task Board”
+	// 20. Test case = Display activities status on â€œTask Boardâ€�
 	// ???
 	// @Test
 	// public void tc20() {
@@ -239,19 +250,21 @@ public class ServiceControllerTest {
 	// 21. Test case = set activity status
 	@Test
 	public void tc21() {
-		assertEquals(c.setStatus(t, status), true);
+		Task t = new Task t();
+		c.setStatus(t, 1); 
+		assertEquals(c.getStatus(t), 1);
 	}
 
-	// 20. Test case = Display activities status on “Task Board”
+	// 20. Test case = Display activities status on â€œTask Boardâ€�
 	// 22. Test case = control not started status
 	// 23. Test case = control started status
 	// 24. Test case = control for test status
 	// 25. Test case = control done status
 	// 26. Test case = control unplanned status
-	// 27. Test case = control “hinder som finns” status
+	// 27. Test case = control â€œhinder som finnsâ€� status
 	@Test
 	public void tc22() {
-		int temp;
+		int temp = 1;
 		c.setStatus(t, temp);
 		assertEquals(c.getStatus(t), temp);
 	}
@@ -259,14 +272,19 @@ public class ServiceControllerTest {
 	// 28. Test case = add activity/task to backlog
 	@Test
 	public void tc28() {
-		assertEquals(c.addTaskToBacklog(t), true);
+		Task t = new Task();
+		c.addTaskToBacklog(t);
+		assertEquals(c.getTaskFromBacklog(t), true);
 	}
 
 	// 29. Test case = set backlog activity status
-	// Redan löst?
+	// Redan lÃ¶st?
+	//KOLLA UPP
 	@Test
 	public void tc29() {
-		assertEquals(c.setTaskStatusBacklog(t, status), true);
+		
+		//c.setTaskStatusBacklog(t, status);
+		assertEquals(c.getStatusFromBacklog(t, status), true);
 	}
 
 	// 30. Test case = set priority
@@ -280,9 +298,10 @@ public class ServiceControllerTest {
 	// 31. Test case = set project priority
 	@Test
 	public void tc31() {
+		Project project = new Project(); 
 		int temp = 0;
 		c.setPriorityProject(project, temp);
-		assertEquals(c.getProjectPriority(), temp);
+		assertEquals(c.getProjectPriority(project), temp);
 
 	}
 
