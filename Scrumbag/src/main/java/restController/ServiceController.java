@@ -49,89 +49,107 @@ public class ServiceController {
 	}
 
 	@RequestMapping(value = "/edit-activity/taskId/{expectedTime}?{name}?{currentStatus}?{taskprio}?{responsiblePerson}", method = RequestMethod.GET)
-	public Object setAll(@PathVariable("task") Task task, @PathVariable("expectedTime")int expectedTime,@PathVariable("name") String name,@PathVariable("currentStatus") Object currentStatus,
+	public void setAll(@PathVariable("task") Task task, @PathVariable("expectedTime")int expectedTime,@PathVariable("name") String name,@PathVariable("currentStatus") Object currentStatus,
 			@PathVariable("taskprio") Object taskprio,@PathVariable("responsiblePerson") Object responsiblePerson,
 			@PathVariable("actuallTime")Object actuallTime) {
 			task.setAll(expectedTime, name, currentStatus, taskprio, responsiblePerson, actuallTime);
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	public User login(String username, String password) {
-		// TODO Auto-generated method stub
-		return null;
+		User u = null;
+		u = db.checkUser;
+		return u;
 	}
 
-	public Object setActuallTime(int i) {
-		// TODO Auto-generated method stub
-		return null;
+	public void setActuallTime(int i, Task t) {
+		t.setActuallTime(i);
 	}
 
-	public Object newUser(boolean access, ArrayList arrayUser) {
-		// TODO Auto-generated method stub
-		return null;
+	public Object newUser(User userAdmin, String name, boolean adminOrNot) {
+		User u = null;
+		if (userAdmin.getaccess==true) {
+			u = new User (name, false); //Vanlig användare 
+		}
+		return u;
 	}
 
-	public Object setStatus(Task t, int status) {
+	public void setStatus(Task t, int status) {
+		t.setStatus(status); 
 		// TODO Auto-generated method stub
-		return null;
 	}
 
-	public Object getStatus(Task t) {
-		// TODO Auto-generated method stub
-		return null;
+	public int getStatus(Task t) {
+		return t.getStatus();
 	}
 
-	public Object addTaskToBacklog(Task t) {
+	public void addTaskToBacklog(Task t) {
+		bl.add(t);
 		// TODO Auto-generated method stub
-		return null;
+		
+	}
+	
+	public Task getTaskFromBacklog(Task t) {
+		
+		return t.getTaskFromBacklog();
+		
 	}
 
 	public Object setTaskStatusBacklog(Task t, int status) {
-		// TODO Auto-generated method stub
-		return null;
+	
+		bl.setTaskStatusBacklog(t, status);
 	}
 
 	public void setPriorityTask(Task t, int temp1) {
+		
+		t.setPriority(temp1);
 		// TODO Auto-generated method stub
 
 	}
 
-	public Object getPriorityTask(Task t) {
-		// TODO Auto-generated method stub
-		return null;
+	public int getPriorityTask(Task t) {
+		
+		return t.getPriority();
 	}
 
 	public void setPriorityProject(Project project, int temp) {
-		// TODO Auto-generated method stub
+		
+		project.setPriority(temp);
 
 	}
 
-	public Object getProjectPriority() {
+	public int getProjectPriority(Project project) {
 		// TODO Auto-generated method stub
-		return null;
+		return project.getPriority();
 	}
 
-	public void setTaskTime(int time, User user) {
-		// TODO Auto-generated method stub
+	public void setTaskTimeUser(int time, User u, Task t) {
+		t.setTaskTime(time, u);
 
 	}
-
-	public void addToProject(boolean access, User user, Project project) {
-		// TODO Auto-generated method stub
-
+	
+	public int getTaskTimeUser(Task t, User u); {
+		
+		return t.getTaskTime(u);
 	}
 
-	public void deletUserFromProject(boolean access, User user, Project project) {
-		// TODO Auto-generated method stub
-
+	public void addToProject(User admin, User user, Project project) {
+		if (admin.getAcces() == true) {
+	   project.addUsersToProject(user);
+		}
 	}
 
+	public void deletUserFromProject(User admin, User user, Project project) {
+		if (admin.getAccess()==true) {
+			project.deletUserFromProject(user);
+		}
+
+	}
+//Har haft?
 	public void addTaskToBacklog(boolean access, Group group Project project) {
 		// TODO Auto-generated method stub
 		
 	}
-
+//Har haf?
 	public void deletGroupFromProject(boolean access, Group group, Project project) {
 		// TODO Auto-generated method stub
 
