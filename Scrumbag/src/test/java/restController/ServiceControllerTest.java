@@ -134,7 +134,7 @@ public class ServiceControllerTest {
 	@Test
 	public void tc9() {
 		Task t = new Task();
-		USer u = new User("Kalle", false);
+		USer u = new User("KalleAnka", false);
 		c.setTaskTimeUser(time, u, t);
 		assertEquals(c.getTaskTimeUser(u, t), true); 
 	}
