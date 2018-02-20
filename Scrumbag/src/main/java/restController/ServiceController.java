@@ -48,24 +48,27 @@ public class ServiceController {
 		return "Successfully deleted";
 	}
 
-	@RequestMapping(value = "/edit-activity/taskId/{expectedTime}?{name}?{currentStatus}?{taskprio}?{responsiblePerson}", method = RequestMethod.GET)
+	@RequestMapping(value = "/edit-activity/{taskId}/{expectedTime}?{name}?{currentStatus}?{taskprio}?{responsiblePerson}", method = RequestMethod.GET)
 	public void setAll(@PathVariable("task") Task task, @PathVariable("expectedTime")int expectedTime,@PathVariable("name") String name,@PathVariable("currentStatus") Object currentStatus,
 			@PathVariable("taskprio") Object taskprio,@PathVariable("responsiblePerson") Object responsiblePerson,
 			@PathVariable("actuallTime")Object actuallTime) {
 			task.setAll(expectedTime, name, currentStatus, taskprio, responsiblePerson, actuallTime);
 	}
 
-	public User login(String username, String password) {
+	@RequestMapping(value= "/login/{userId}", method = RequestMethod.GET)
+	public User login(@PathVariable("username")String username,@PathVariable("password") String password) {
 		User u = null;
 		u = db.checkUser;
 		return u;
 	}
 
-	public void setActuallTime(int i, Task t) {
-		t.setActuallTime(i);
+	@RequestMapping(value= "/TaskActuallTime/{taskId}/{time}", method = RequestMethod.POST)
+	public void setActuallTime(@PathVariable("time")int time,@PathVariable("Task") Task t) {
+		t.setActuallTime(time);
 	}
 
-	public Object newUser(User userAdmin, String name, boolean adminOrNot) {
+	@RequestMapping(value= "/createUser/{userId}/{name}/{adminOrNot}", method = RequestMethod.POST)
+	public Object newUser(@PathVariable("user")User userAdmin,@PathVariable("name") String name,@PathVariable("adminOrNot") boolean adminOrNot) {
 		User u = null;
 		if (userAdmin.getaccess==true) {
 			u = new User (name, false); //Vanlig användare 
@@ -73,72 +76,85 @@ public class ServiceController {
 		return u;
 	}
 
-	public void setStatus(Task t, int status) {
+	@RequestMapping(value= "/setTaskStatus/{taskId}/{status}", method = RequestMethod.POST)
+	public void setStatus(@PathVariable("Task")Task t,@PathVariable("status") int status) {
 		t.setStatus(status); 
 		// TODO Auto-generated method stub
 	}
 
-	public int getStatus(Task t) {
+	@RequestMapping(value= "/getTaskStatus/{taskId}", method = RequestMethod.GET)
+	public int getStatus(@PathVariable("Task")Task t) {
 		return t.getStatus();
 	}
 
-	public void addTaskToBacklog(Task t) {
+	@RequestMapping(value= "/addTaskToBacklog/{taskId}", method = RequestMethod.POST)
+	public void addTaskToBacklog(@PathVariable("Task")Task t) {
 		bl.add(t);
 		// TODO Auto-generated method stub
 		
 	}
 	
-	public Task getTaskFromBacklog(Task t) {
+	@RequestMapping(value= "/getTaskToBacklog/{taskId}", method = RequestMethod.GET)
+	public Task getTaskFromBacklog(@PathVariable("Task")Task t) {
 		
 		return t.getTaskFromBacklog();
 		
 	}
-
-	public Object setTaskStatusBacklog(Task t, int status) {
+	
+	@RequestMapping(value= "/setTaskStatusBacklog/{taskId}/{status}", method = RequestMethod.POST)
+	public Object setTaskStatusBacklog(@PathVariable("Task")Task t,@PathVariable("status") int status) {
 	
 		bl.setTaskStatusBacklog(t, status);
 	}
 
-	public void setPriorityTask(Task t, int temp1) {
+	@RequestMapping(value= "/setPriorityForTask/{taskId}/{priority}", method = RequestMethod.POST)
+	public void setPriorityTask(@PathVariable("Task")Task t,@PathVariable("priority") int priority) {
 		
-		t.setPriority(temp1);
+		t.setPriority(priority);
 		// TODO Auto-generated method stub
 
 	}
 
-	public int getPriorityTask(Task t) {
+	@RequestMapping(value= "/getPriorityForTask/{taskId}", method = RequestMethod.GET)
+	public int getPriorityTask(@PathVariable("Task")Task t) {
 		
 		return t.getPriority();
 	}
 
-	public void setPriorityProject(Project project, int temp) {
+	@RequestMapping(value= "/setPriorityForProject/{projectId}/{priority}", method = RequestMethod.POST)
+	public void setPriorityProject(@PathVariable("project")Project project,@PathVariable("priority") int priority) {
 		
-		project.setPriority(temp);
+		project.setPriority(priority);
 
 	}
-
-	public int getProjectPriority(Project project) {
+	
+	@RequestMapping(value= "/getProjectPriority/{projectId}", method = RequestMethod.GET)
+	public int getProjectPriority(@PathVariable("project")Project project) {
 		// TODO Auto-generated method stub
 		return project.getPriority();
 	}
 
-	public void setTaskTimeUser(int time, User u, Task t) {
+	@RequestMapping(value= "/setTaskTimeUser/{taskId}/{userId}/{time}", method = RequestMethod.POST)
+	public void setTaskTimeUser(@PathVariable("time")int time,@PathVariable("user") User u,@PathVariable("task") Task t) {
 		t.setTaskTime(time, u);
 
 	}
 	
-	public int getTaskTimeUser(Task t, User u); {
+	@RequestMapping(value= "/gettTaskTimeUser/{taskId}/{userId}", method = RequestMethod.GET)
+	public int getTaskTimeUser(@PathVariable("task")Task t,@PathVariable("user") User u); {
 		
 		return t.getTaskTime(u);
 	}
-
-	public void addToProject(User admin, User user, Project project) {
+	
+	@RequestMapping(value= "/addUsersToProject/{projectId}/{userId}", method = RequestMethod.POST)
+	public void addToProject(@PathVariable("userAdmin")User admin,@PathVariable("user") User user,@PathVariable("project") Project project) {
 		if (admin.getAcces() == true) {
 	   project.addUsersToProject(user);
 		}
 	}
-
-	public void deletUserFromProject(User admin, User user, Project project) {
+	
+	@RequestMapping(value= "/deleteUserFromProject/{projectId}/{userId}", method = RequestMethod.DELETE)
+	public void deletUserFromProject(@PathVariable("userAdmin")User admin,@PathVariable("use") User user,@PathVariable("project") Project project) {
 		if (admin.getAccess()==true) {
 			project.deletUserFromProject(user);
 		}
