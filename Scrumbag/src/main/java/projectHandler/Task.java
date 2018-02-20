@@ -10,8 +10,18 @@ public class Task {
 	private int expectedTime;
 	private int elapsedTime;
 	private int elapsedTimeHalfDays;
-	private int taskPriority;
-	private int taskStatus;
+	private PRIORITY taskPriority;
+	private STATUS taskStatus;
+	
+	
+	public static enum PRIORITY{
+		HIGH, MEDIUM, LOW;
+	}
+
+	
+	public static enum STATUS{
+		NOT_STARTED, STARTED, FOR_TEST, DONE, UNPLANNED, IMPEDIMENTS;
+	}
 	
 	public Task(String taskName, int expectedTime, int taskPriority, int taskStatus, String responsibleUser) {
 		
@@ -57,20 +67,18 @@ public class Task {
 		this.elapsedTime = elapsedTime;
 	}
 
-	public int getTaskPriority() {
+	public PRIORITY getTaskPriority() {
 		return taskPriority;
 	}
 
 	public void setTaskPriority(int taskPriority) {
-		this.taskPriority = taskPriority;
 	}
 
-	public int getTaskStatus() {
+	public STATUS getTaskStatus() {
 		return taskStatus;
 	}
 
 	public void setTaskStatus(int taskStatus) {
-		this.taskStatus = taskStatus;
 	}
 
 	public int getElapsedTimeHalfDays() {
