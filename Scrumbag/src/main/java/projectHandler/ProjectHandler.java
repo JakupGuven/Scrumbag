@@ -3,6 +3,7 @@ package projectHandler;
 import java.util.ArrayList;
 
 import databaseManager.ProjectQuerier;
+import projectHandler.Task.PRIORITY;
 
 public class ProjectHandler {
 	private ProjectQuerier projectQuerier;

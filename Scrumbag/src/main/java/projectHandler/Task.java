@@ -3,9 +3,9 @@ package projectHandler;
 public class Task {
 
 	private String taskName;
-
+	//maybe User class instead?
 	private User responsibleUser;
-
+	
 	private int taskID;
 	private int expectedTime;
 	private int elapsedTime;
