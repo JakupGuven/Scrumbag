@@ -1,0 +1,40 @@
+Möte 2018-02-09
+
+Utforma testfall för REST Controller utifrån krav och implementera (påbörjat)
+Skapa web interface (påbörjat)
+
+Nästa möte 15/2
+
+    Funktionella krav
+1. Test case = create task
+2. Test case = change task status
+3. Test case = remove task
+4. Test case = edit task
+5. Test case = login
+6. Test case = logout
+7. Test case = set Task time expected
+8. Test case = set responsible task
+9. Test case = set task time spent
+10. Test case = Admin create new user account
+11. Test case = Admin add users to project
+12. Test case = Admin delete users from a project
+13. Test case = Admin add group to a project
+14. Test case = Admin delete group from a project
+15. Test case = return user time spent
+16. Test case = return responsible person for task
+17. Test case = return expected time for activities 
+18. Test case = return activities time half day
+19. Test case = Display to “Task Board”
+20. Test case = Display activities status on “Task Board”
+21. Test case = set activity status
+22. Test case = control not started status
+23. Test case = control started status
+24. Test case = control for test status
+25. Test case = control done status
+26. Test case = control unplanned status 
+27. Test case = control “hinder som finns” status
+28. Test case = add activity to backlog
+29. Test case = set backlog activity status
+30. Test case = set priority
+31. Test case = set project priority
+
