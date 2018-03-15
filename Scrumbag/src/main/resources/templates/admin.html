@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
-<meta charset="utf-8">
+<meta charset="UTF-8"></meta>
 
 <title>Admin Menu</title>
 </head>
@@ -11,28 +11,29 @@
   <div>
   <h1>Admin Menu</h1>
     <ul>
-      <a href="projectCreate.html">Create Project</a>
+      <a href="">Create Project</a>
     </ul>
     <ul>
-    <a href="newUser.html">Add new User</a>
+    <a href="">Add new User</a>
   </ul>
   <ul>
-    <a href="removeUser.html">Remove User</a>
+    <a href="">Remove User</a>
   </ul>
   <ul>
-    <a href="addToProject.html">Add users to project</a>
+    <a href="">Add users to project</a>
   </ul>
   <ul>
-    <a href="deleteFromProject.html">Remove users from project</a>
+    <a href="">Remove users from project</a>
   </ul>
   <ul>
-    <a href="addGroupToProject.html">Add group to project</a>
+    <a href="">Add group to project</a>
   </ul>
   <ul>
-    <a href="removeGroupToProject.html">Remove group to project</a>
+    <a href="">Remove group to project</a>
   </ul>
   </div>
-  <a href="login.html" class="logout">logout</a>
-  <script src="js/scripts.js"></script>
+  <form th:action="@{/logout}" method="post">
+      <input type="submit" value="Sign Out"/>
+  </form>
 </body>
 </html>
