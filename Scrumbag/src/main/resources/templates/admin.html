@@ -4,6 +4,7 @@
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
 <meta charset="UTF-8"></meta>
+<link rel="stylesheet" href="style.css"></link>
 
 <title>Admin Menu</title>
 </head>
@@ -11,25 +12,25 @@
   <div>
   <h1>Admin Menu</h1>
     <ul>
-      <a href="">Create Project</a>
+      <a href="projectcreate">Create Project</a>
     </ul>
     <ul>
-    <a href="">Add new User</a>
+    <a href="newuser">Add new User</a>
   </ul>
   <ul>
-    <a href="">Remove User</a>
+    <a href="removeuser">Remove User</a>
   </ul>
   <ul>
-    <a href="">Add users to project</a>
+    <a href="addtoproject">Add users to project</a>
   </ul>
   <ul>
-    <a href="">Remove users from project</a>
+    <a href="deletefromproject">Remove users from project</a>
   </ul>
   <ul>
-    <a href="">Add group to project</a>
+    <a href="addgrouptoproject">Add group to project</a>
   </ul>
   <ul>
-    <a href="">Remove group to project</a>
+    <a href="removegrouptoproject">Remove group to project</a>
   </ul>
   </div>
   <form th:action="@{/logout}" method="post">

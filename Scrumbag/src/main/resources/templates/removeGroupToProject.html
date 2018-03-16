@@ -2,27 +2,27 @@
 
 <html>
 <head>
-<meta charset="utf-8">
-
+<meta charset="utf-8"></meta>
 <title>Remove group from project</title>
 
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css"></link>
 </head>
 <body class="usermenu">
   <div>
   <form action="adminList.html">
   Group name
-  <br>
-  <input type="text" name="Group">
-  <br>
+  <br></br>
+  <input type="text" name="Group"></input>
+  <br></br>
   Project name
-  <br>
-  <input type="text" name="Project">
-  <br>
-  <input type="submit" name="loginsubmit">
+  <br></br>
+  <input type="text" name="Project"></input>
+  <br></br>
+  <input type="submit" name="loginsubmit"></input>
   </form>
   </div>
-  <a href="login.html" class="logout">logout</a>
-  <script src="js/scripts.js"></script>
+    <form th:action="@{/logout}" method="post">
+      <input type="submit" value="Sign Out"/>
+  </form>
 </body>
 </html>

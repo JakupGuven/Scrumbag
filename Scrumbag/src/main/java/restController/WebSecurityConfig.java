@@ -15,8 +15,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
             .authorizeRequests()
                 .antMatchers("/login").permitAll()
-                .antMatchers("/usermenu", "/", "/home").hasRole("USER")
-                .antMatchers("/admin").hasRole("ADMIN")
+                .antMatchers("/usermenu", "/", "/home", "/activitylist", "/activitylistremove", "/editactivity", "/newactivity", "/sprintmenu", "/sprints", "/sprintmenustatic").hasRole("USER")
+                .antMatchers("/admin", "/projectcreate", "/newuser", "/removeuser", "addtoproject", "deletefromproject", "addgrouptoproject", "removegrouptoproject").hasRole("ADMIN")
                 .and()
             .formLogin()
                 .loginPage("/login")

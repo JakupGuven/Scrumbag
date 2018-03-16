@@ -2,11 +2,11 @@
 
 <html>
 <head>
-<meta charset="utf-8">
+  <meta charset="utf-8"></meta>
 
 <title>Activity List</title>
 
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css"></link>
 </head>
 <body class="usermenu">
   <div>
@@ -28,8 +28,9 @@
 
   </div>
 
-  <a href="login.html" class="logout">logout</a>
-</body>
+  <form th:action="@{/logout}" method="post" class = "logout">
+     <input type="submit" value="Sign Out"/>
+ </form></body>
 </html>
 
 <script type="text/javascript">

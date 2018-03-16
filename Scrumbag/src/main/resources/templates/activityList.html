@@ -2,28 +2,29 @@
 
 <html>
 <head>
-<meta charset="utf-8">
+<meta charset="utf-8"></meta>
 
 <title>Activity List</title>
 
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css"></link>
 </head>
 <body class="usermenu">
   <h1>Activity List</h1>
   <div>
   <ul>
-    <a href="editActivity.html">Test activity 1</a>
+    <a href="editactivity">Test activity 1</a>
   </ul>
   <ul>
-    <a href="editActivity.html">Test activity 2</a>
+    <a href="editactivity">Test activity 2</a>
   </ul>
   <ul>
-    <a href="editActivity.html">Test activity 3</a>
+    <a href="editactivity">Test activity 3</a>
   </ul>
 
   </div>
 
-  <a href="login.html" class="logout">logout</a>
-  <script src="js/scripts.js"></script>
+  <form th:action="@{/logout}" method="post" class = "logout">
+     <input type="submit" value="Sign Out"/>
+ </form>  <script src="js/scripts.js"></script>
 </body>
 </html>

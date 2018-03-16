@@ -11,7 +11,6 @@ public class ServiceRunner {
 	 */
 	  public static void main(String[] args) {
 	        SpringApplication.run(ServiceRunner.class, args);
-	        
 	    }
 
 }

@@ -2,36 +2,37 @@
 
 <html>
 <head>
-<meta charset="utf-8">
-
+<meta charset="utf-8"></meta>
 <title>Sprint Menu</title>
 
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css"></link>
 </head>
 <body class="usermenu ">
   <h1>Project 1</h1>
   <div>
     <h4>Sprint history</h4>
     <ul>
-      <a href="sprintMenuStatic.html">Sprint 1</a>
+      <a href="sprintmenustatic">Sprint 1</a>
     </ul>
     <ul>
-      <a href="sprintMenuStatic.html">Sprint 2</a>
+      <a href="sprintmenustatic">Sprint 2</a>
     </ul>
     <ul>
-      <a href="sprintMenuStatic.html">Sprint 3</a>
+      <a href="sprintmenustatic">Sprint 3</a>
     </ul>
-    <br>  
+    <br></br>
     <h4>Current Sprints </h4>
   <ul>
-    <a href="sprintMenu.html">Sprint 4</a>
+    <a href="sprintmenu">Sprint 4</a>
   </ul>
   <ul>
-    <a href="sprintMenu.html">Sprint 5</a>
+    <a href="sprintmenu">Sprint 5</a>
   </ul>
 
   </div>
-  <a href="login.html" class="logout">logout</a>
-  <script src="js/scripts.js"></script>
+  <form th:action="@{/logout}" method="post" class = "logout">
+     <input type="submit" value="Sign Out"/>
+ </form>
+   <script src="js/scripts.js"></script>
 </body>
 </html>

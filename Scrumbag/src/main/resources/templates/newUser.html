@@ -2,27 +2,27 @@
 
 <html>
 <head>
-<meta charset="utf-8">
-
+<meta charset="utf-8"></meta>
 <title>Create new user</title>
 
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css"></link>
 </head>
 <body class="usermenu">
   <div>
   <form action="adminList.html">
   Users name
-  <br>
-  <input type="text" name="user">
-  <br>
+  <br></br>
+  <input type="text" name="user"/>
+  <br></br>
   Users password
-  <br>
-  <input type="password" name="pass">
-  <br>
-  <input type="submit" name="loginsubmit">
+  <br></br>
+  <input type="password" name="pass"/>
+  <br></br>
+  <input type="submit" name="loginsubmit"/>
   </form>
   </div>
-<a href="login.html" class="logout">logout</a>
-  <script src="js/scripts.js"></script>
+  <form th:action="@{/logout}" method="post" class = "logout">
+     <input type="submit" value="Sign Out"/>
+ </form>  <script src="js/scripts.js"></script>
 </body>
 </html>
