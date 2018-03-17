@@ -12,6 +12,7 @@ public class Task {
 	private int elapsedTimeHalfDays;
 	private PRIORITY taskPriority;
 	private STATUS taskStatus;
+	private int projectID;
 	
 	
 	public static enum PRIORITY{
@@ -23,7 +24,19 @@ public class Task {
 		NOT_STARTED, STARTED, FOR_TEST, DONE, UNPLANNED, IMPEDIMENTS;
 	}
 	
-	public Task(String taskName, int expectedTime, int taskPriority, int taskStatus, String responsibleUser) {
+	public Task(int projectID, String taskName, String responsibleUser, int expectedTime, Task.PRIORITY priority, Task.STATUS status) {
+		
+	}
+
+	
+	
+	public void setProjectID(int projectID) {
+		
+	}
+	
+	public int getProjectID() {
+		
+		return 0; 
 		
 	}
 

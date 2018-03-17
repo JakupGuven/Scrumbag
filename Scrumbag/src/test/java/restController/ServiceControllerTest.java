@@ -10,13 +10,14 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import projectHandler.User;
 import projectHandlerService.Project;
 import projectHandlerService.Task;
 
 public class ServiceControllerTest {
 	private int time; // Each status have a different int
 	private boolean access;
-	private Task t;
+	private projectHandler.Task t;
 	private Backlog bl;
 	private Sprint s;
 	private Project project;
@@ -31,6 +32,7 @@ public class ServiceControllerTest {
 	private Object taskprio;
 	private Object actuallTime;
 	private Object responsiblePerson;
+
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -65,57 +67,93 @@ public class ServiceControllerTest {
 	// Test case = create task
 	@Test
 	public void tc1() {
-
-		assertEquals(c.createTask(expectedTime, name, currentStatus, taskprio, responsiblePerson), true);
+		
+		int projectID = 10;
+		int taskID = 10; 
+		String taskName; 
+		String responsiblePerson;
+		int taskPriority;
+		int taskStatus; 
+		int expectedTime;
+	
+		c.createTask(projectID, taskName, responsiblePerson, taskPriority,
+				 taskStatus);
+		
+		assertEquals(taskID, c.getTask(taskID));
+		
 		// fail("Not yet implemented");
 	}
 
 	// Test case = change task status
-	@Test
-	public void tc2() {
-		assertEquals(c.changeStatus(t, status), true);
+		@Test
+		public void tc2() {
+			int taskStatus = 1;
+			Task task = new Task(0, "Make a sandwich", "Kalle", 3, 2, 30);
+			c.changeStatus(task, taskStatus);
+			assertEquals(taskStatus, c.getTaskStatus(task));
+		
 	}
 
 	// 3. Test case = remove task
+	
 	@Test
 	public void tc3() {
-		assertEquals(c.deleteTask(t), true);
+		int taskID = 1;
+		Task task = new Task(taskID, "Drive to the store", "Ann-marie", 3, 2, 10);
+		c.deleteTask(task);
+		assertEquals(null, c.getTask(taskID));
 	}
 
 	// 4. Test case = edit task
 	@Test
 	public void tc4() {
-		assertEquals(c.setAll(expectedTime, name, currentStatus, taskprio, responsiblePerson, actuallTime), true);
+		Task task = new Task(4, "Call the police", "Johan", 2, 3, 5);
+		c.setAll("Call the FBI", "Bert", 1, 1, 15);
+		assertEquals(task.getTaskName(), "Call the police");
+		
 
 	}
 
 	// 5. Test case = login
 	@Test
 	public void tc5() {
-		user = c.login(username, password);
-		assertSame(user, userTest);
+		String userName= "kisseKatten96";
+		String password = "123abc";
+		User user = new User(46283, userName, password);
+		
+		assertSame(c.login(username, password), true );  //logiskt att just denna returnerar en true?
 	}
 
 	// 6. Test case = logout
 	@Test
 	public void tc6() {
-		assertEquals(c.logout(userTest), true);
+		String userName= "kisseKatten96";
+		String password = "123abc";
+		User user = new User(46283, userName, password);
+		c.login(username, password);
+		assertEquals(c.logout(username, password), true);  
 	}
-
+	
 	// 7. Test case = set Task Time Expected
 	@Test
 	public void tc7() {
-		Task t = new Task();
-		int temp = 10;
-		c.setActuallTime(temp, t);
-		assertEquals(c.getActuallTime(t), temp);
+		Task task = new Task(projectID, taskName, responsibleUser, expectedTime, priority, status); //Fixa rätt parametrar			
+		int tempTime = 10;
+//		c.setActuallTime(temp, t);
+		c.setExpectedTime(tempTime, task);
+		assertEquals(c.getExpectedTime(task), tempTime);  //byt namn till getExpectedTime
 	}
 
 	// 8. Test case = set responsible task
 	@Test
 	public void tc8() {
-		User userTemp = new User();
-		assertEquals(c.setResponsibleTask(t, userTemp), true); //*
+		String userName= "kisseKatten96";
+		String password = "123abc";
+		User userTemp = new User(5928, userName, password);
+		projectHandler.Task task = new Task(projectID, taskName, responsibleUser, expectedTime, priority, status);//Fixa rätt parametrar 
+
+		c.setResponsibleTask(task, userTemp.getName); //och sätt userTemp.getName/id som responsible person		
+		assertEquals(userName, task.getResponsibleUser()); 
 	}
 
 	// 8. Test case = set responsible task

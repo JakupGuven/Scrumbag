@@ -7,6 +7,7 @@ import projectHandler.Task.PRIORITY;
 
 public class ProjectHandler {
 	private ProjectQuerier projectQuerier;
+	private Task task; 
 
 	public ProjectHandler(ProjectQuerier inProjectQuerier) {
 		projectQuerier = inProjectQuerier;
@@ -16,12 +17,21 @@ public class ProjectHandler {
 	public void createNewTask(int projectID, String taskName, String responsiblePerson, int taskPriority,
 			int taskStatus, int expectedTime) {
 
+
 	}
+	
+	
+	
 
 	// FK2, FK4, FK7, FK8, FK21
 	public void editTask(int projectID, int taskID, String taskNAme, String responsiblePerson, int taskPriority,
 			int taskStatus, int expectedTime) {
 
+	}
+	
+	public int getTask(int taskID) {
+		Task task = new Task(10, "Scrum Meeting", "Dina", 2, Task.PRIORITY.HIGH, Task.STATUS.NOT_STARTED);
+		return task.getTaskID();
 	}
 
 	// FK4

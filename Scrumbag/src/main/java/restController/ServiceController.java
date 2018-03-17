@@ -8,13 +8,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import projectHandler.ProjectHandler;
 import projectHandlerService.Project;
 import projectHandlerService.Task;
 import projectHandlerService.Task.taskStatus;
 
 @RestController
 public class ServiceController {
-
+	private ProjectHandler pH;
 	/**
 	 * Exempelmetod När en HTTP GET request görs till
 	 * localhost:8080/hello-world/officiellt Spring Boot certifierad kommer
@@ -169,5 +170,10 @@ public class ServiceController {
 	public void deletGroupFromProject(boolean access, Group group, Project project) {
 		// TODO Auto-generated method stub
 
+	}
+
+	public int getTask(int taskID) {
+		return pH.getTask(taskID);
+	
 	}
 }
