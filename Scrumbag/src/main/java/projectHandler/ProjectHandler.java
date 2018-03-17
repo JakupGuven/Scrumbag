@@ -74,23 +74,12 @@ public class ProjectHandler {
 	}
 	//FK15,FK16,FK17,FK18
 	public ArrayList<Task> getRegisteredTasks(String username) {
-		ArrayList<Task> list = new ArrayList();
-		Task taskOne = new Task("create taskboard view", 10, 0, 0, "Mattias");
-		Task taskTwo = new Task("create taskboard logic", 15, 0, 0, "Mattias");
-		list.add(taskOne);
-		list.add(taskTwo);
-		return list;
+		return null;
 	}
 	//FK19, FK20
 	public ArrayList<Task> getSprintTasks(int projectID, int sprintID) {
-		ArrayList<Task> list = new ArrayList();
-		Task taskOne = new Task("create taskboard view", 10, 1, 0, "Mattias");
-		Task taskTwo = new Task("create taskboard logic", 15, 0, 0, "Mattias");
-		Task taskThree = new Task("create task statuses", 10, 1, 0, "Mattias");
-		list.add(taskOne);
-		list.add(taskTwo);
-		list.add(taskThree);
-		return list;
+		return null;
+
 	}
 
 

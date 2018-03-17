@@ -84,7 +84,7 @@ public class Task {
 		return taskPriority;
 	}
 
-	public void setTaskPriority(int taskPriority) {
+	public void setTaskPriority(PRIORITY priority) {
 	}
 
 	public STATUS getTaskStatus() {
@@ -101,6 +101,28 @@ public class Task {
 
 	public void setElapsedTimeHalfDays(int elapsedTimeHalfDays) {
 		this.elapsedTimeHalfDays = elapsedTimeHalfDays;
+	}
+
+
+
+	public void setAll(int expectedTime2, String name, Object currentStatus, Object taskprio, Object responsiblePerson,
+			Object actuallTime) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+	public void setTaskTime(int time, User u) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+	public int getTaskTime(User u) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 
