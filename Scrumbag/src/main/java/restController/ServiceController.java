@@ -9,8 +9,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import projectHandler.ProjectHandler;
-import projectHandlerService.Project;
-import projectHandlerService.Task;
+import projectHandler.User;
+import projectHandler.Group;
+import projectHandler.Project;
+import projectHandler.Task;
+import projectHandler.Task.STATUS;
 import projectHandlerService.Task.taskStatus;
 
 @RestController
@@ -37,8 +40,8 @@ public class ServiceController {
 	}
 
 	@RequestMapping(value = "/change-status/{taskID}?{status}", method = RequestMethod.GET)
-	public Object changeStatus(@PathVariable("task") Task task,@PathVariable("status") taskStatus status) {
-		task.setCurrentStatus(status);
+	public Object changeStatus(@PathVariable("task")Task task,@PathVariable("status") STATUS status) {
+		task.setTaskStatus(status);
 		return new String("The status have been change");
 	}
 	
@@ -148,14 +151,14 @@ public class ServiceController {
 	}
 	
 	@RequestMapping(value= "/addUsersToProject/{projectId}/{userId}", method = RequestMethod.POST)
-	public void addToProject(@PathVariable("userAdmin")User admin,@PathVariable("user") User user,@PathVariable("project") Project project) {
+	public void addUsersToProject(@PathVariable("userAdmin")User admin,@PathVariable("user") User user,@PathVariable("project") Project project) {
 		if (admin.getAcces() == true) {
 	   project.addUsersToProject(user);
 		}
 	}
 	
 	@RequestMapping(value= "/deleteUserFromProject/{projectId}/{userId}", method = RequestMethod.DELETE)
-	public void deletUserFromProject(@PathVariable("userAdmin")User admin,@PathVariable("use") User user,@PathVariable("project") Project project) {
+	public void deletUserFromProject(@PathVariable("userAdmin")User admin,@PathVariable("user") User user,@PathVariable("project") Project project) {
 		if (admin.getAccess()==true) {
 			project.deletUserFromProject(user);
 		}
@@ -167,13 +170,52 @@ public class ServiceController {
 		
 	}
 //Har haf?
-	public void deletGroupFromProject(boolean access, Group group, Project project) {
+	@RequestMapping(value= "/deleteGroupFromProject/{projectId}", method = RequestMethod.DELETE)
+	public void deletGroupFromProject(@PathVariable("access")boolean access,@PathVariable("userList") ArrayList<String> userList,@PathVariable("project") Project project) {
 		// TODO Auto-generated method stub
 
 	}
 
-	public int getTask(int taskID) {
+	@RequestMapping(value= "/getTask/{taskId}", method = RequestMethod.GET)
+	public int getTask(@PathVariable("taskID")int taskID) {
 		return pH.getTask(taskID);
 	
+	}
+	@RequestMapping(value= "/logout/{userId}", method = RequestMethod.GET)
+	public User logout(@PathVariable("username")String username,@PathVariable("password") String password) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+    
+	@RequestMapping(value= "/setExpectedTime/{taskId}", method = RequestMethod.POST)
+	public void setExpectedTime(@PathVariable("time")int tempTime,@PathVariable("task") Task task) {
+		
+		int expectedTime;
+		task.setExpectedTime(expectedTime);
+		
+	}
+
+	@RequestMapping(value= "/getExpectedTime/{taskId}", method = RequestMethod.GET)
+	public int getExpectedTime(@PathVariable("task")Task task) {
+	
+		return task.getExpectedTime();
+	}
+
+	@RequestMapping(value= "/addGroupToProject/{projectId}", method = RequestMethod.POST)
+	public void addGroupToProject(@PathVariable("uadmin")User uadmin,@PathVariable("userList")  ArrayList<String> userList,@PathVariable("projectID") int projectID) {
+		pH.addMultipleUsersToProject(projectID, userList);
+	}
+	
+	@RequestMapping(value= "/getProjectID/{projectId}", method = RequestMethod.GET)
+	public int getProjectID(@PathVariable("projectID")int projectID) {
+		
+		return pH.getProjectID(projectID); 
+	}
+
+	@RequestMapping(value= "/setResponsibleTask/{taskId}", method = RequestMethod.POST)
+	public void setResponsibleTask(@PathVariable("task")Task task, @PathVariable("responsibleUser") User responsibleUser) {
+		
+		task.setResponsibleUser(responsibleUser);
+		
 	}
 }

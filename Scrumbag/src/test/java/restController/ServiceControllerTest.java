@@ -11,8 +11,12 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import projectHandler.User;
-import projectHandlerService.Project;
-import projectHandlerService.Task;
+import projectHandler.Group;
+import projectHandler.Project;
+import projectHandler.ProjectHandler;
+import projectHandler.Task;
+import projectHandler.Task.PRIORITY;
+import projectHandler.Task.STATUS;
 
 public class ServiceControllerTest {
 	private int time; // Each status have a different int
@@ -87,10 +91,10 @@ public class ServiceControllerTest {
 	// Test case = change task status
 		@Test
 		public void tc2() {
-			int taskStatus = 1;
-			Task task = new Task(0, "Make a sandwich", "Kalle", 3, 2, 30);
+			STATUS taskStatus = STATUS.UNPLANNED;
+			Task task = new Task(0, "Make a sandwich", "Kalle", 3, PRIORITY.LOW, taskStatus);
 			c.changeStatus(task, taskStatus);
-			assertEquals(taskStatus, c.getTaskStatus(task));
+			assertEquals(taskStatus, c.getStatus(task));
 		
 	}
 
@@ -99,7 +103,7 @@ public class ServiceControllerTest {
 	@Test
 	public void tc3() {
 		int taskID = 1;
-		Task task = new Task(taskID, "Drive to the store", "Ann-marie", 3, 2, 10);
+		Task task = new Task(taskID, "Drive to the store", "Ann-marie", 3, PRIORITY.HIGH, STATUS.DONE);
 		c.deleteTask(task);
 		assertEquals(null, c.getTask(taskID));
 	}
@@ -107,7 +111,7 @@ public class ServiceControllerTest {
 	// 4. Test case = edit task
 	@Test
 	public void tc4() {
-		Task task = new Task(4, "Call the police", "Johan", 2, 3, 5);
+		Task task = new Task(4, "Call the police", "Johan", 2, PRIORITY.LOW, STATUS.FOR_TEST);
 		c.setAll("Call the FBI", "Bert", 1, 1, 15);
 		assertEquals(task.getTaskName(), "Call the police");
 		
@@ -119,7 +123,7 @@ public class ServiceControllerTest {
 	public void tc5() {
 		String userName= "kisseKatten96";
 		String password = "123abc";
-		User user = new User(46283, userName, password);
+		User user = new User(46283, userName, password, false);
 		
 		assertSame(c.login(username, password), true );  //logiskt att just denna returnerar en true?
 	}
@@ -129,7 +133,7 @@ public class ServiceControllerTest {
 	public void tc6() {
 		String userName= "kisseKatten96";
 		String password = "123abc";
-		User user = new User(46283, userName, password);
+		User user = new User(46283, userName, password, false);
 		c.login(username, password);
 		assertEquals(c.logout(username, password), true);  
 	}
@@ -137,7 +141,12 @@ public class ServiceControllerTest {
 	// 7. Test case = set Task Time Expected
 	@Test
 	public void tc7() {
-		Task task = new Task(projectID, taskName, responsibleUser, expectedTime, priority, status); //Fixa rätt parametrar			
+		int projectID = 5;
+		String taskName = "Scrum Meeting";
+		String responsibleUser = "kisseKatten96";
+		int expectedTime = 10; 
+		
+		Task task = new Task(projectID, taskName, responsibleUser, expectedTime, PRIORITY.LOW, STATUS.FOR_TEST); //Fixa rätt parametrar			
 		int tempTime = 10;
 //		c.setActuallTime(temp, t);
 		c.setExpectedTime(tempTime, task);
@@ -149,10 +158,10 @@ public class ServiceControllerTest {
 	public void tc8() {
 		String userName= "kisseKatten96";
 		String password = "123abc";
-		User userTemp = new User(5928, userName, password);
-		projectHandler.Task task = new Task(projectID, taskName, responsibleUser, expectedTime, priority, status);//Fixa rätt parametrar 
-
-		c.setResponsibleTask(task, userTemp.getName); //och sätt userTemp.getName/id som responsible person		
+		User user = new User(5928, userName, password, false);
+		Task task = new Task(projectID, taskName, responsibleUser, expectedTime, priority, status);//Fixa rätt parametrar 
+	
+		c.setResponsibleTask(task, user); //och sätt userTemp.getName/id som responsible person		
 		assertEquals(userName, task.getResponsibleUser()); 
 	}
 
@@ -171,16 +180,26 @@ public class ServiceControllerTest {
 	// always increase for each time someone makes progress on that task
 	@Test
 	public void tc9() {
-		Task t = new Task();
-		USer u = new User("KalleAnka", false);
-		c.setTaskTimeUser(time, u, t);
-		assertEquals(c.getTaskTimeUser(u, t), true); 
+		
+		Task task = new Task(10, "Scrum Meeting", "Dina", 15, PRIORITY.MEDIUM, STATUS.DONE);
+		User user = new User(15, "Dina", "kelf121", false); 
+		c.setTaskTimeUser(15, user, task);
+		assertEquals(15, t.getElapsedTime()); 
 	}
+
 
 	// 10. Test case = Admin create new user account
 	@Test
 	public void tc10() {
-		assertEquals(c.newUser(userAdmin, name, adminOrNot), true);
+		String userName = "Janne93";
+		String password = "Andersson12";
+		int userID = 45;
+		boolean AdminOrNot = false;
+		User user = new User(userID , userName, password, AdminOrNot); 
+	    User userAdmin = new User(12,"Anna", "hej123", true);
+	    
+		c.newUser(userAdmin, userName, false);
+		assertEquals(userName, user.getUserName(userName)); 
 		// Alternativt
 		// assertEquals(c.newUser(userAdmin, arrayUser), true);
 	}
@@ -188,9 +207,15 @@ public class ServiceControllerTest {
 	// 11. Test case = Admin add users to project
 	@Test
 	public void tc11() {
-		User uAdmin = new User ("Anna" ,true);
-		User userToPut = new User ("kalle" , false);
-		assertEquals(c.addToProject(uAdmin, userToPut, project), true); 
+		User uAdmin = new User (12,"Anna", "hej123", true);
+		User userToPut = new User (18, "Linda" , "lalal12", false);
+		int userID = 18;
+		Project project = new Project("The crew", 200, userID ); 
+		
+		c.addUsersToProject(uAdmin, userToPut, project);
+		
+		assertEquals(userID, project.getUserID(userID)); 
+		
 		// Alternativt
 		// assertEquals(c.newUser(userAdmin, userTest, project), true);
 	}
@@ -198,21 +223,43 @@ public class ServiceControllerTest {
 	// 12. Test case = Admin delete users from a project
 	@Test
 	public void tc12() {
-		User admin = new User("Anna", true);
-		User userToPut = new User("kalle" ,false);
-		assertEquals(c.deletUserFromProject(admin, userToPut, project), true); 
+		User admin = new User(12, "Anna", "hej123", true);
+		User userToPut = new User(18, "Linda" , "lalal12", false);
+		int userID = 18;
+		Project project = new Project("The crew", 200, userID ); 
+		
+		c.deletUserFromProject(admin, userToPut, project);
+		assertEquals(userID, null); 
 	}
 
 	// 13. Test case = Admin add group to a project
 	@Test
 	public void tc13() {
-		assertEquals(c.addGroupToProject(access, group, project), true); 
+		
+		int projectID = 100; 
+		String projectName; 
+		User uadmin = new User(12, "Anna", "hej123", true);
+		ArrayList<String>userList;  
+		int userID;
+		Project project = new Project(projectName, projectID, userID); 
+		
+		c.addGroupToProject(uadmin, userList, projectID);
+		
+		assertEquals(c.getProjectID(projectID), projectID); 
 	}
 
 	// 14. Test case = Admin delete group from a project
 	@Test
 	public void tc14() {
-		assertEquals(c.deletGroupFromProject(access, group, project), true);
+
+		int projectID = 100;
+		User uadmin = new User(12, "Anna", "hej123", true);
+		String projectName;
+		Project project = new Project(projectName, projectID); 
+		ArrayList<String>userList; 
+		
+		c.deletGroupFromProject(true, userList, project);
+		assertEquals(null, projectID); 
 	}
 
 	// 15. Test case = user can see registered tasks in a datastructure

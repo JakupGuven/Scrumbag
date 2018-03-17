@@ -33,6 +33,11 @@ public class ProjectHandler {
 		Task task = new Task(10, "Scrum Meeting", "Dina", 2, Task.PRIORITY.HIGH, Task.STATUS.NOT_STARTED);
 		return task.getTaskID();
 	}
+	
+	public int getProjectID(int projectID) {
+		
+		return projectID;
+	}
 
 	// FK4
 	public void setTaskStatus(int projectID, int taskID, int taskStatus) {
@@ -87,5 +92,7 @@ public class ProjectHandler {
 		list.add(taskThree);
 		return list;
 	}
+
+
 
 }

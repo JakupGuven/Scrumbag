@@ -90,8 +90,9 @@ public class Task {
 	public STATUS getTaskStatus() {
 		return taskStatus;
 	}
+	
 
-	public void setTaskStatus(int taskStatus) {
+	public void setTaskStatus(STATUS taskStatus) {
 	}
 
 	public int getElapsedTimeHalfDays() {
@@ -101,5 +102,10 @@ public class Task {
 	public void setElapsedTimeHalfDays(int elapsedTimeHalfDays) {
 		this.elapsedTimeHalfDays = elapsedTimeHalfDays;
 	}
+
+
+
+
+
 
 }
