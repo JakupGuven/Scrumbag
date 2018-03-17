@@ -210,11 +210,12 @@ public class ServiceControllerTest {
 		User uAdmin = new User (12,"Anna", "hej123", true);
 		User userToPut = new User (18, "Linda" , "lalal12", false);
 		int userID = 18;
-		Project project = new Project("The crew", 200, userID ); 
+		ArrayList<String> userList;
+		Project project = new Project("The crew", 200, userID, userList); 
 		
 		c.addUsersToProject(uAdmin, userToPut, project);
 		
-		assertEquals(userID, project.getUserID(userID)); 
+		assertEquals(userID, project.getUserID(userID)); //Osäker på denna om man ska lägga in en user i userList
 		
 		// Alternativt
 		// assertEquals(c.newUser(userAdmin, userTest, project), true);
@@ -226,9 +227,10 @@ public class ServiceControllerTest {
 		User admin = new User(12, "Anna", "hej123", true);
 		User userToPut = new User(18, "Linda" , "lalal12", false);
 		int userID = 18;
-		Project project = new Project("The crew", 200, userID ); 
+		ArrayList<String> userList;
+		Project project = new Project("The crew", 200, userID, userList); 
 		
-		c.deletUserFromProject(admin, userToPut, project);
+		c.deletUserFromProject(admin, userToPut, project); //Osäker på denna om man ska ta bort en user från en userList
 		assertEquals(userID, null); 
 	}
 
@@ -239,27 +241,33 @@ public class ServiceControllerTest {
 		int projectID = 100; 
 		String projectName; 
 		User uadmin = new User(12, "Anna", "hej123", true);
-		ArrayList<String>userList;  
+		ArrayList<String>userList;
+		userList.add("Emma");
+		userList.add("Sara"); 
 		int userID;
-		Project project = new Project(projectName, projectID, userID); 
+		
+		Project project = new Project(projectName, projectID, userID, userList); 
 		
 		c.addGroupToProject(uadmin, userList, projectID);
 		
-		assertEquals(c.getProjectID(projectID), projectID); 
+		assertEquals(userList, project.getusers(userList)); 
 	}
 
 	// 14. Test case = Admin delete group from a project
 	@Test
 	public void tc14() {
 
-		int projectID = 100;
 		User uadmin = new User(12, "Anna", "hej123", true);
-		String projectName;
-		Project project = new Project(projectName, projectID); 
-		ArrayList<String>userList; 
+		int projectID = 100;
+		String projectName = "Number one";
+		int userID;
+		ArrayList<String> userList;
+		userList.add("Emma");
+		userList.add("Sara"); 
+		Project project = new Project(projectName, projectID, userID,userList ); 
 		
 		c.deletGroupFromProject(true, userList, project);
-		assertEquals(null, projectID); 
+		assertEquals(null, project.getusers(userList)); 
 	}
 
 	// 15. Test case = user can see registered tasks in a datastructure
