@@ -1,0 +1,29 @@
+<!doctype html>
+
+<html>
+<head>
+<meta charset="utf-8"></meta>
+<title>Sprint Menu</title>
+
+<link rel="stylesheet" href="style.css"></link>
+</head>
+<body class="usermenu ">
+  <h1>Sprint Menu</h1>
+  <div>
+  <ul>
+    <a href="newactivity">Add new activity</a>
+  </ul>
+  <ul>
+    <a href="activitylistremove">Remove activity</a>
+  </ul>
+  <ul>
+    <a href="activitylist">Edit activity</a>
+  </ul>
+<img src="scrum-task-board.png" alt="Scrum boards"></img>
+  </div>
+  <form th:action="@{/logout}" method="post" class = "logout">
+     <input type="submit" value="Sign Out"/>
+ </form>
+   <script src="js/scripts.js"></script>
+</body>
+</html>

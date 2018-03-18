@@ -1,0 +1,33 @@
+<!doctype html>
+
+<html>
+<head>
+<meta charset="UTF-8"></meta>
+<link rel="stylesheet" href="style.css"></link>
+<title>Scrum Menu</title>
+
+</head>
+<body class="usermenu ">
+  <h1>Scrum Menu</h1>
+  <div>
+  <h4>Available projects</h4>
+  <ul>
+    <a href="sprints">Project 1</a>
+  </ul>
+  <ul>
+    <a href="sprints">Project 2</a>
+  </ul>
+  <ul>
+    <a href="sprints">Project 3</a>
+  </ul>
+  <br></br>
+  <br></br>
+  <br></br>
+  <br></br>
+
+  </div>
+   <form th:action="@{/logout}" method="post">
+      <input type="submit" value="Sign Out"/>
+  </form>
+</body>
+</html>

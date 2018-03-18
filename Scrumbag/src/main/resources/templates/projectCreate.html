@@ -1,0 +1,35 @@
+<!doctype html>
+
+<html>
+<head>
+<meta charset="utf-8"></meta>
+<title>Create Project</title>
+
+<link rel="stylesheet" href="style.css"></link>
+</head>
+<body class="activity" >
+  <div>
+  <h1>Create Project</h1>
+  <form action="userMenu.html">
+  <p>Project name</p>
+  <br></br>
+  <input type="text" name="projectName" value="Project name"/>
+  <br></br>
+  <p>Scrum master</p>
+  <br></br>
+  <input type="text" name="scrumMaster" value="The scrum master"/>
+  <br></br>
+  <p>Project developer</p>
+  <br></br>
+  <input type="text" name="taskEstiTime" value="First developer"/>
+  <br></br>
+  <br></br>
+<input type="submit" name="newActivity"/>
+  </form>
+  </div>
+
+  <form th:action="@{/logout}" method="post" class = "logout">
+     <input type="submit" value="Sign Out"/>
+ </form>  <script src="js/scripts.js"></script>
+</body>
+</html>

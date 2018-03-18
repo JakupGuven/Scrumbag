@@ -1,0 +1,51 @@
+<!doctype html>
+
+<html>
+<head>
+<meta charset="utf-8"></meta>
+<title>Remove User</title>
+
+<link rel="stylesheet" href="style.css"></link>
+</head>
+<body class="activity" >
+  <div>
+  <ul>
+    <div id="myDIV1">
+      <button onclick="myFunction1()">User 1</button>
+    </div>
+  </ul>
+  <ul>
+    <div id="myDIV2">
+      <button onclick="myFunction2()">User 2</button>
+    </div>
+  </ul>
+  <ul>
+    <div id="myDIV3">
+      <button onclick="myFunction3()">User 3</button>
+    </div>
+  </ul>
+
+  </div>
+
+  <form th:action="@{/logout}" method="post" class = "logout">
+     <input type="submit" value="Sign Out"/>
+ </form>
+</body>
+</html>
+<script type="text/javascript">
+function myFunction1() {
+  console.log("test");
+  var x = document.getElementById("myDIV1");
+  x.style.display = "none";
+}
+function myFunction2() {
+  console.log("test");
+  var x = document.getElementById("myDIV2");
+  x.style.display = "none";
+}
+function myFunction3() {
+  console.log("test");
+  var x = document.getElementById("myDIV3");
+  x.style.display = "none";
+}
+</script>

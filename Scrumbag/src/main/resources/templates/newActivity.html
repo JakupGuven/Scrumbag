@@ -1,0 +1,55 @@
+<!doctype html>
+
+<html>
+<head>
+<meta charset="utf-8"></meta>
+<title>Create new activity</title>
+
+<link rel="stylesheet" href="style.css"></link>
+</head>
+<body class="activity">
+  <div>
+  <h1>New Activity</h1>
+  <form action="sprintmenu">
+  Task name
+  <br></br>
+  <input type="text" name="taskName" value="Task name"></input>
+  <br></br>
+  Responsible
+  <br></br>
+  <input type="text" name="taskResponsible" value="Responsible developer"></input>
+  <br></br>
+  Estimated time
+  <br></br>
+  <input type="number" name="taskEstiTime" value="4"></input>
+  <br></br>
+  Priority:
+  <br></br>
+  <select name="Priority">
+  <option value="Empty">Pick priority</option>
+  <option value="High">High</option>
+  <option value="Medium">Medium</option>
+  <option value="Low">Low</option>
+</select>
+<br></br>
+  Status:
+  <br></br>
+  <select name="Status">
+  <option value="Empty">Pick status</option>
+  <option value="started">Started</option>
+  <option value="notStarted">Not started</option>
+  <option value="forTest">For Test</option>
+  <option value="unplanned">Unplanned</option>
+  <option value="impediments">Impediments</option>
+</select>
+<br></br>
+<br></br>
+<input type="submit" name="newctivity"></input>
+  </form>
+  </div>
+
+  <form th:action="@{/logout}" method="post" class = "logout">
+     <input type="submit" value="Sign Out"/>
+ </form>  <script src="js/scripts.js"></script>
+</body>
+</html>

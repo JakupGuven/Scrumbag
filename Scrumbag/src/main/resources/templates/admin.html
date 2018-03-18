@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+<meta charset="UTF-8"></meta>
+<link rel="stylesheet" href="style.css"></link>
+
+<title>Admin Menu</title>
+</head>
+<body class="usermenu">
+  <div>
+  <h1>Admin Menu</h1>
+    <ul>
+      <a href="projectcreate">Create Project</a>
+    </ul>
+    <ul>
+    <a href="newuser">Add new User</a>
+  </ul>
+  <ul>
+    <a href="removeuser">Remove User</a>
+  </ul>
+  <ul>
+    <a href="addtoproject">Add users to project</a>
+  </ul>
+  <ul>
+    <a href="deletefromproject">Remove users from project</a>
+  </ul>
+  <ul>
+    <a href="addgrouptoproject">Add group to project</a>
+  </ul>
+  <ul>
+    <a href="removegrouptoproject">Remove group to project</a>
+  </ul>
+  </div>
+  <form th:action="@{/logout}" method="post">
+      <input type="submit" value="Sign Out"/>
+  </form>
+</body>
+</html>

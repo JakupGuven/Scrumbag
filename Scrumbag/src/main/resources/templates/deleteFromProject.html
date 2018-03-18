@@ -1,0 +1,28 @@
+
+<html>
+<head>
+  <meta charset="utf-8"></meta>
+
+<title>Delete user from project</title>
+
+<link rel="stylesheet" href="style.css"></link>
+</head>
+<body class="usermenu">
+  <div>
+  <form action="adminList.html">
+  Users name
+  <br></br>
+  <input type="text" name="user"/>
+  <br></br>
+  Project name
+  <br></br>
+  <input type="text" name="project"/>
+  <br></br>
+  <input type="submit" name="loginsubmit"/>
+  </form>
+  </div>
+  <form th:action="@{/logout}" method="post" class = "logout">
+     <input type="submit" value="Sign Out"/>
+ </form>
+</body>
+</html>
