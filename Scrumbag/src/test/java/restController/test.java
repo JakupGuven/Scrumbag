@@ -13,7 +13,7 @@ import org.junit.Test;
 import projectHandler.*;
 import projectHandler.Task.PRIORITY;
 import projectHandler.Task.STATUS;
-import restController.ServiceController;
+import serverInterface.ServiceController;
 
 public class test {
 

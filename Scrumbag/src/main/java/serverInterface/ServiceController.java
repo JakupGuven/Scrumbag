@@ -1,4 +1,4 @@
-package restController;
+package serverInterface;
 
 import java.util.ArrayList;
 
